@@ -1,8 +1,8 @@
-function U = SSPRKN(order,U,dUdt,dt)
+function U = SSPRKN(order,U,dt)
 alpha = SSPRKcoeffs(order);
 Uvec = [U];
 for i = 1:order
-    Ui = Uvec(i,:) + dt/2 * dUdt(Uvec(i,:));
+    Ui = Uvec(i,:) + dt/2 * computeFluxDerivative(Uvec(i,:));
     Uvec = [Uvec;Ui];
 end
 Um = zeros(size(U));

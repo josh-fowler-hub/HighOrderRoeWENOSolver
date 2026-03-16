@@ -44,13 +44,11 @@ omega0_R = alpha0_R./alphatot_R;
 omega1_R = alpha1_R./alphatot_R;
 omega2_R = alpha2_R./alphatot_R;
 
-% Apply weights to all 3 variables
-for k = 1:3
-    q0 = (2.*Uip3(k,:) - 7.*Uip2(k,:) + 11.*Uip1(k,:))./6;
-    q1 = (-Uip2(k,:) + 5.*Uip1(k,:) + 2.*Ui(k,:))./6;
-    q2 = (2.*Uip1(k,:) + 5.*Ui(k,:) - Uim1(k,:))./6;
-    URip12(k,:) = omega0_R.*q0 + omega1_R.*q1 + omega2_R.*q2;
-end
+% Apply weights to all 3 variables (vectorized)
+q0 = (2 .* Uip3 - 7 .* Uip2 + 11 .* Uip1) ./ 6;
+q1 = (-Uip2 + 5 .* Uip1 + 2 .* Ui) ./ 6;
+q2 = (2 .* Uip1 + 5 .* Ui - Uim1) ./ 6;
+URip12 = omega0_R .* q0 + omega1_R .* q1 + omega2_R .* q2;
 
 % ===== LEFT RECONSTRUCTION (at interface i+1/2) =====
 % Compute smoothness indicators once using component 1
@@ -68,10 +66,8 @@ omega0_L = alpha0_L./alphatot_L;
 omega1_L = alpha1_L./alphatot_L;
 omega2_L = alpha2_L./alphatot_L;
 
-% Apply weights to all 3 variables
-for k = 1:3
-    q0 = (2.*Uim2(k,:) - 7.*Uim1(k,:) + 11.*Ui(k,:))./6;
-    q1 = (-Uim1(k,:) + 5.*Ui(k,:) + 2.*Uip1(k,:))./6;
-    q2 = (2.*Ui(k,:) + 5.*Uip1(k,:) - Uip2(k,:))./6;
-    ULip12(k,:) = omega0_L.*q0 + omega1_L.*q1 + omega2_L.*q2;
-end
+% Apply weights to all 3 variables (vectorized)
+q0 = (2 .* Uim2 - 7 .* Uim1 + 11 .* Ui) ./ 6;
+q1 = (-Uim1 + 5 .* Ui + 2 .* Uip1) ./ 6;
+q2 = (2 .* Ui + 5 .* Uip1 - Uip2) ./ 6;
+ULip12 = omega0_L .* q0 + omega1_L .* q1 + omega2_L .* q2;

@@ -142,6 +142,7 @@ for testidx = 1:numel(config.test_num)
                             % Plot the Results at the end of the run
                             if ~config.plot_in_time
                                 makePlots(U,xs,gamma,flux,lam,rec,Order,xidx,k,config.extra_prim_var_plot,solver);
+                                configurePlots(rec,test_num,cells,cfl,config.extra_prim_var_plot,solver,Order,config.plot_folder);
                             end
                             if config.plot_in_time
                                 Riemann(rhoL,uL,PL,rhoR,uR,PR,t,middle,R,gamma,config.cells,config.extra_prim_var_plot);

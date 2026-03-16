@@ -85,6 +85,7 @@ config.xend = xend;
 config.cfl = cfl;
 config.extra_prim_var_plot = extra_prim_var_plot;
 config.plot_in_time = plot_in_time;
+config.plot_folder = '../thesis/FigsforCommittee/';
 
 results = runSolver(config);
 

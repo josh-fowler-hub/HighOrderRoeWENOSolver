@@ -102,7 +102,7 @@ Supported reconstruction schemes:
 
 #### Flux limiter mapping
 
-The limiter is selected via a numeric ID passed in `flux_limiter`. The code uses `src/reconstruction/phiFlux.m`.
+The limiter is selected via a numeric ID passed in `flux_limiter`. The code uses `src/reconstruction/limitFlux.m`.
 
 - **1** - Minmod
 - **2** - van Leer
@@ -135,6 +135,17 @@ Common options:
 - `cells` - number of grid cells (spatial resolution)
 - `xstart`, `xend` - domain boundaries
 - `cfl` - CFL number (stability parameter)
+
+## Central Differencing (CD Term)
+
+The solver includes an optional *central differencing* dissipation term to improve stability and shock resolution. This is controlled by `config.CD_Term_Order`:
+
+- `1` — 2nd-order central differencing (minimal additional dissipation)
+- `2` — 4th-order central differencing
+- `4` — 6th-order central differencing
+- `6` — 8th-order central differencing (strongest dissipation)
+
+The central-differencing term is applied inside the Riemann flux evaluation (see `src/solvers/roeSolver.m`).
 
 ### Plotting Options
 
@@ -171,7 +182,7 @@ config.xend = 1;
 config.cfl = 0.8;
 config.extra_prim_var_plot = true;
 config.plot_in_time = false;
-config.CD_Term_Order = [1];       % used for higher-order dissipation terms
+config.CD_Term_Order = [1];
 
 results = runSolver(config);
 

@@ -38,9 +38,9 @@ ri = (dUim12 + ep1) ./ (dUip12 + ep2);
 rim1 = (dUim32 + ep1) ./ (dUim12 + ep2);
 
 % Compute limiter functions for all 3 variables at once
-phiip1 = phiFlux(flux_limiter, rip1);
-phii = phiFlux(flux_limiter, ri);
-phiim1 = phiFlux(flux_limiter, rim1);
+phiip1 = limitFlux(flux_limiter, rip1);
+phii = limitFlux(flux_limiter, ri);
+phiim1 = limitFlux(flux_limiter, rim1);
 
 % Compute coefficients once
 coeff = 1 / (4 * lam);
