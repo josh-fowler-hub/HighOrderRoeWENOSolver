@@ -140,10 +140,10 @@ Common options:
 
 The solver includes an optional *central differencing* dissipation term to improve stability and shock resolution. This is controlled by `config.CD_Term_Order`:
 
-- `1` — 2nd-order central differencing (minimal additional dissipation)
-- `2` — 4th-order central differencing
-- `4` — 6th-order central differencing
-- `6` — 8th-order central differencing (strongest dissipation)
+- `1` — No central differencing, (Riemann solver only)
+- `2` — 2nd-order central differencing
+- `4` — 4th-order central differencing
+- `6` — 6th-order central differencing
 
 The central-differencing term is applied inside the Riemann flux evaluation (see `src/solvers/roeSolver.m`).
 
